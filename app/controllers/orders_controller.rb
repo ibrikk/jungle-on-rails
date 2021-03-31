@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @line_items = @order.line_items
   end
 
   def create
@@ -28,8 +29,8 @@ class OrdersController < ApplicationController
 
   def perform_stripe_charge
     Stripe::Charge.create(
-      source:      params[:stripeToken],
-      amount:      cart_subtotal_cents,
+      source: params[:stripeToken],
+      amount: (cart_subtotal_cents * 100).to_int,
       description: "Khurram Virani's Jungle Order",
       currency:    'cad'
     )
@@ -38,7 +39,7 @@ class OrdersController < ApplicationController
   def create_order(stripe_charge)
     order = Order.new(
       email: params[:stripeEmail],
-      total_cents: cart_subtotal_cents,
+      total_cents: cart_subtotal_cents * 100,
       stripe_charge_id: stripe_charge.id, # returned by stripe
     )
 
@@ -54,6 +55,14 @@ class OrdersController < ApplicationController
     end
     order.save!
     order
+  end
+
+  def list_rder_items order
+    #@line_items is an array
+    # need to loop over it and assign the relevant fields
+    # @img, @name, @description, @quantity, @line_total
+    order.map {|item| { name: item.name, quantity: item.quantity, description: item.description }}
+    # Product.where(id: cart.keys).map {|product| { product:product, quantity: cart[product.id.to_s] }
   end
 
 end
