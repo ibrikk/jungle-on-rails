@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Categories</th>
-      <th>Number of Products in Category</th>
+        <td><a href="/admin/categories"><%= @category.length %></a></td>
     </tr>
   </thead>
 
@@ -28,7 +28,7 @@
   <tfoot>
     <tr>
       <th>Total number of products</th>
-      <td><a href="/admin/products"><%= @product_count %></a></td>
+      <td><a href="/admin/products"><%= @product.length %></a></td>
     </tr>
   </tfoot>
 </table> 
