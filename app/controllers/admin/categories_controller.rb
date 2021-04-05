@@ -1,8 +1,8 @@
 class Admin::CategoriesController < ApplicationController
 
+ 
   http_basic_authenticate_with name: ENV["USERNAME"], password: ENV["PASSWORD"]
 
-  #need to create an index, new and create actions
   def index
     @category_name_to_id = {}
     @product_per_category_count = {}
@@ -13,6 +13,7 @@ class Admin::CategoriesController < ApplicationController
       @product_per_category_count[c.name] = 0
       @category_name_to_id[c.name] = c.id
     end
+
 
 
 
@@ -38,6 +39,6 @@ end
 private
 
 def category_params
-  params.require(:category).permit(:name)
+  params.require(:category).permit(:name,)
 end
 end
