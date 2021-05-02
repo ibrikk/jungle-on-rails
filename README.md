@@ -2,6 +2,8 @@
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
+![Screenshot](https://user-images.githubusercontent.com/59522575/113931521-8b35b580-97c0-11eb-9e84-90dac0336498.gif)
+
 ## Additional Steps for Apple M1 Machines
 
 1. Make sure that you are runnning Ruby 2.6.6 (`ruby -v`)
